@@ -10,11 +10,11 @@
 # Description:       Example start-stop-daemon - Debian
 ### END INIT INFO
 
-NAME="carts"
+NAME="order"
 PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin"
-APPDIR="/opt/carts"
+APPDIR="/opt/order"
 APPBIN="/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java"
-APPARGS="-jar /opt/apps/carts/carts.war"
+APPARGS="-jar /opt/apps/order/order.war"
 USER="devops"
 GROUP="devops"
 
