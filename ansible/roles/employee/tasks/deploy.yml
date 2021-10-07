@@ -1,35 +1,35 @@
 - name: create releases directory
   file:
-    path: "/opt/apps/frontend/releases/{{ frontend.release.version }}"
+    path: "/opt/apps/employee/releases/{{ employee.release.version }}"
     state: directory
     recurse: yes
     mode: 0755
 
 - name: download release artifact
   unarchive:
-    src: "{{ frontend.release.url }}"
-    dest: "/opt/apps/frontend/releases/{{ frontend.release.version }}"
+    src: "{{ employee.release.url }}"
+    dest: "/opt/apps/employee/releases/{{ employee.release.version }}"
     remote_src: yes
     mode: 0755
 
 - name: create relase symlink
   file:
-    src: "/opt/apps/frontend/releases/{{ frontend.release.version }}"
-    dest: /opt/frontend
+    src: "/opt/apps/employee/releases/{{ employee.release.version }}"
+    dest: /opt/employee
     state: link
-  notify: restart frontend service
+  notify: restart employee service
 
 
-- name: copy supervisor config for frontend
+- name: copy supervisor config for employee
   copy:
-    src: frontend.supervisor.conf
-    dest: /etc/supervisor/conf.d/frontend.conf
+    src: employee.supervisor.conf
+    dest: /etc/supervisor/conf.d/employee.conf
     mode: 0755
   notify: restart supervisor
 
 - meta: flush_handlers
 
-- name: start frontend service
+- name: start employee service
   supervisorctl:
-    name: frontend
+    name: employee
     state: started
