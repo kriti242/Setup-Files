@@ -1,0 +1,37 @@
+#!/bin/bash
+DIR=/opt/employee
+cd $DIR
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/node-v4.8.6-linux-x64/bin
+NODE_PATH=/usr/local/node-v4.8.6-linux-x64/lib/node_modules
+start()
+{
+      	nohup "node" "$DIR/server.js"  1>>"$DIR/mogambo.log" 2>&1 &
+      	echo $! > "$DIR/employee.pid";
+      	echo "Started employee service"
+}
+
+stop()
+{
+	kill `cat $DIR/employee.pid`
+      	echo "Stopped employee service"
+}
+
+restart() {
+	echo "Restarting employee service"
+	stop
+	start
+}
+case $1 in
+   start)
+      start
+      ;;
+    stop)
+      stop
+      ;;
+    restart)
+      restart
+      ;;
+    *)
+      echo "usage: /etc/init.d/employee {start|stop|restart}" ;;
+esac
+exit 0
