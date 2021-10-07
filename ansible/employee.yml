@@ -1,0 +1,7 @@
+---
+  - hosts: employee
+    become: yes
+    roles:
+      - { role: common }
+      - { role: nodejs }
+      - { role: employee, tags: ['deploy'] }
