@@ -1,3 +1,10 @@
 # add inventory for dev env to this file
-[orders]
+[order]
 192.168.61.11 ansible_ssh_pass=codespaces
+
+[employee]
+192.168.61.13 ansible_ssh_pass=codespaces
+
+[dev:children]
+order
+employee
