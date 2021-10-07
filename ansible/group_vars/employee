@@ -1,0 +1,4 @@
+employee:
+  release:
+    url: http://localhost:9080/job/Employee_service_Package/lastSuccessfulBuild/artifact/distribution/employee-1.0.0.zip
+    version: 1.0.0
