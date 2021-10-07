@@ -1,4 +1,12 @@
-version: '2'
+version: '3.0'
+
+networks:
+  custom:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.61.0/24
 
 volumes:
   cs-ansible:
@@ -7,14 +15,30 @@ volumes:
   
 services:
   control:
-    image: kriti/ansible-control:2.0.0
+    image: kriti/ansible-control:3.0.0
+    domainname: codespaces.io
+    hostname: control
+    restart: always
     ports:
       - "8000:8000"
     volumes:
       - cs-ansible:/root/workspace
+    networks:
+      custom:
+        ipv4_address: 192.168.61.10
+    dns: 8.8.8.8
+    
+  employee:
+    image: kriti/ansible-node-ubuntu:18.04
     domainname: codespaces.io
-    hostname: control
+    hostname: employee
     restart: always
+    networks:
+      custom:
+        ipv4_address: 192.168.61.11
+    dns: 8.8.8.8
+    ports:
+       - "80:8079"
     
   orders:
     image: weaveworksdemos/orders:0.4.7
@@ -30,12 +54,15 @@ services:
       - /tmp:rw,noexec,nosuid
     environment:
       - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+    networks:
+      custom:
+        ipv4_address: 192.168.61.13
+    dns: 8.8.8.8
     ports:
       - "8082:80"
       
   orders-db:
     image: mongo:3.4
-    domainname: codespaces.io
     hostname: orders-db
     restart: always
     cap_drop:
