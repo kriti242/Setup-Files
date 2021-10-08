@@ -15,7 +15,8 @@ volumes:
   
 services:
   control:
-    image: kriti242/ansible-control:3.0.0
+    image: lagairogo/ansible-control:3.0.0
+#     image: kriti242/ansible-control:3.0.0
     ports:
       - "8000:8000"
     volumes:
@@ -29,7 +30,8 @@ services:
     restart: always
     
   employee:
-    image: kriti242/ansible-node-ubuntu:18.04
+    image: lagairogo/ansible-node-ubuntu:18.04
+#     image: kriti242/ansible-node-ubuntu:18.04
     ports:
        - "80:8079"
     networks:
@@ -42,7 +44,8 @@ services:
     
     
   orders:
-    image: kriti242/ansible-node-ubuntu:18.04
+    image: lagairogo/ansible-node-ubuntu:18.04
+#     image: kriti242/ansible-node-ubuntu:18.04
     ports:
       - "8082:80"
     networks:
