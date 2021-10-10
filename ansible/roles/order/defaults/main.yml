@@ -7,5 +7,5 @@ additional:
     - maven
 
 order:
-  version: 1.4.4
+  version: 0.4.7
   artifact: http://localhost:9080/job/Order_service_Package/lastSuccessfulBuild/artifact/target/orders.jar
