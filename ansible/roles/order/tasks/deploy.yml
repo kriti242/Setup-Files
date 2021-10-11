@@ -14,10 +14,10 @@
   
 - name: create relase symlink
   file:
-    src: "/opt/apps/frontend/releases/{{ order.version }}"
+    src: "/opt/apps/order/releases/{{ order.version }}"
     dest: /opt/order
     state: link
-  notify: restart frontend service
+  notify: restart order service
 
 - name: copy supervisor config for order
   copy:
