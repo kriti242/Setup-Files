@@ -1,5 +1,5 @@
 ---
-# handlers file for catalogue
+# handlers file for order
 - name: restart order service
   supervisorctl:
     name: order
