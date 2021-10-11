@@ -53,7 +53,7 @@ services:
         ipv4_address: 192.168.61.13
     dns: 8.8.8.8
     domainname: codespaces.io
-    hostname: orders
+    hostname: order
     restart: always
     
       
